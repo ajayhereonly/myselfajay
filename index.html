@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Responsive viewport configuration for mobile, tablet, and desktop views -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Singh | Mechanical Engineer, Educator &amp; Developer</title>
+  <meta name="description" content="Portfolio &amp; ATS CV of Ajay Singh (ajayhereonly) - B.Tech Mechanical Engineer, Founder at Trishakti Defence Academy, Python &amp; AI Developer." />
+
+  <!-- Google Fonts: Inter and JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --glass-bg: rgba(17, 25, 40, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --accent-cyan: #38bdf8;
+      --accent-indigo: #818cf8;
+      --accent-emerald: #34d399;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Animated Aurora Glassmorphism Background */
+    .aurora-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.16), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.18), transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(52, 211, 153, 0.12), transparent 45%);
+      filter: blur(45px);
+      animation: auroraShift 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes auroraShift {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.08) translate(-2%, 2%); }
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-gradient {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gear-svg {
+      animation: spinSlow 24s linear infinite;
+      filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.35));
+    }
+
+    @keyframes spinSlow {
+      100% { transform: rotate(360deg); }
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 10px 26px rgba(56, 189, 248, 0.18);
+    }
+
+    .filter-btn.active,
+    .tab-btn.active {
+      background: rgba(56, 189, 248, 0.22);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
+    pre.code-viewer {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    canvas.game-canvas {
+      background: #050811;
+      border: 2px solid var(--accent-cyan);
+      border-radius: 12px;
+      max-width: 100%;
+      touch-action: none;
+    }
+
+    /* Clean ATS print output */
+    @media print {
+      .aurora-bg,
+      header,
+      .no-print,
+      #program-modal {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+
+      .glass-card,
+      .project-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        color: #0f172a !important;
+      }
+
+      p, span, div, a {
+        color: #1e293b !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background aura -->
+  <div class="aurora-bg" aria-hidden="true"></div>
+
+  <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+    <!-- Navigation Bar -->
+    <header class="glass-card px-5 py-4 flex flex-col sm:flex-row justify-between items-center gap-3 sticky top-3 z-40">
+      <div class="font-extrabold text-lg sm:text-xl tracking-tight brand-gradient">
+        AJAY SINGH // PORTFOLIO
+      </div>
+      <nav aria-label="Section Navigation" class="flex flex-wrap justify-center gap-3 sm:gap-5 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-sky-400 transition-colors p-1">About</a>
+        <a href="#projects" class="hover:text-sky-400 transition-colors p-1">GitHub Projects</a>
+        <a href="#experience" class="hover:text-sky-400 transition-colors p-1">Experience</a>
+        <a href="#education" class="hover:text-sky-400 transition-colors p-1">Education</a>
+        <a href="#skills" class="hover:text-sky-400 transition-colors p-1">Skills</a>
+      </nav>
+    </header>
+
+    <!-- Hero & ATS Profile Header -->
+    <section id="about" class="glass-card p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+      <div class="md:col-span-8 space-y-4">
+        <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-sky-500/15 text-sky-300 border border-sky-400/30">
+          B.Tech Mechanical Engineer • Educator • Python &amp; AI Developer
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+          Ajay Singh
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl">
+          Mechanical Engineering graduate (CGPA 7.83) from Jaipur Engineering College, Founder &amp; Instructor at Trishakti Defence Academy, and 3 times AFCAT qualifier (airforce officer level exam) building Python applications, interactive games, and websites.
+        </p>
+
+        <!-- Contact Details -->
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-300 pt-1">
+          <span>📍 Jaipur &amp; Bhim, Rajasthan</span>
+          <a href="tel:+917891037123" class="hover:text-sky-400 transition-colors">📞 +91 7891037123</a>
+          <a href="mailto:nandawat007@gmail.com" class="hover:text-sky-400 transition-colors">✉️ nandawat007@gmail.com</a>
+          <a href="https://github.com/ajayhereonly" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors font-mono">
+            💻 github.com/ajayhereonly
+          </a>
+          <a href="https://www.linkedin.com/in/ajay-singh-29a1752a0" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition-colors font-mono break-all">
+            🔗 www.linkedin.com/in/ajay-singh-29a1752a0
+          </a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-3 pt-2 no-print">
+          <a href="#projects" class="px-4 py-2.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-sky-400 to-indigo-400 text-slate-950 hover:opacity-95 transition">
+            Launch Live Projects
+          </a>
+          <button type="button" onclick="printResume()" class="px-4 py-2.5 rounded-xl font-semibold text-sm bg-white/10 text-white border border-white/15 hover:bg-white/15 transition cursor-pointer">
+            Download / Print ATS CV
+          </button>
+          <button type="button" onclick="copyContactDetails()" class="px-4 py-2.5 rounded-xl font-semibold text-sm bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 hover:bg-emerald-500/25 transition cursor-pointer">
+            Copy Contact Info
+          </button>
+        </div>
+        <div id="action-feedback" class="text-xs text-emerald-300 min-h-[1.25rem]"></div>
+      </div>
+
+      <!-- Rotating Mechanical Gear Graphic -->
+      <div class="md:col-span-4 flex justify-center items-center" aria-hidden="true">
+        <svg class="gear-svg w-36 h-36 sm:w-48 sm:h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="28" stroke="#38bdf8" stroke-width="4" stroke-dasharray="8 4" />
+          <circle cx="50" cy="50" r="16" stroke="#818cf8" stroke-width="3" />
+          <path d="M50 6V16M50 84V94M6 50H16M84 50H94M19 19L26 26M74 74L81 81M81 19L74 26M26 74L19 81" stroke="#34d399" stroke-width="4" stroke-linecap="round" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Interactive GitHub Projects Runner -->
+    <section id="projects" class="glass-card p-6 sm:p-8 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-white">
+            Interactive GitHub Projects (@ajayhereonly)
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+            Click any active repository card to run interactive demos, preview web apps, or inspect repository files inside this page.
+          </p>
+        </div>
+        <span id="sync-status" class="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 self-start sm:self-auto">
+          ● Ready to Launch
+        </span>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap gap-2 no-print" role="group" aria-label="Filter Projects">
+        <button type="button" class="filter-btn active px-3.5 py-2 rounded-full text-xs font-medium bg-white/5 text-slate-300 border border-white/10 cursor-pointer transition" onclick="filterProjects('all', this)">
+          All Repositories (4)
+        </button>
+        <button type="button" class="filter-btn px-3.5 py-2 rounded-full text-xs font-medium bg-white/5 text-slate-300 border border-white/10 cursor-pointer transition" onclick="filterProjects('game', this)">
+          Games (3)
+        </button>
+        <button type="button" class="filter-btn px-3.5 py-2 rounded-full text-xs font-medium bg-white/5 text-slate-300 border border-white/10 cursor-pointer transition" onclick="filterProjects('web', this)">
+          Web &amp; Portfolio (1)
+        </button>
+      </div>
+
+      <!-- Active Repository Cards -->
+      <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Experience & Project Work -->
+    <section id="experience" class="glass-card p-6 sm:p-8 space-y-4">
+      <h2 class="text-xl sm:text-2xl font-bold text-white">Experience &amp; Project Work</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <article class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1.5">
+          <h3 class="font-semibold text-base text-sky-300">Founder &amp; Instructor — Trishakti Defence Academy</h3>
+          <div class="text-xs text-slate-400">Bhim, Rajasthan • 2026 – Present</div>
+          <p class="text-sm text-slate-300">
+            Founded and instruct defence preparation batches for Indian Army, Agniveer Vayu (X &amp; Y Groups), and Agniveer Navy (SSR &amp; MR) examinations.
+          </p>
+        </article>
+        <article class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1.5">
+          <h3 class="font-semibold text-base text-sky-300">Website Project — Kathiyawadi Chai</h3>
+          <div class="text-xs text-slate-400">Client Website Project</div>
+          <p class="text-sm text-slate-300">
+            Built this website as a project for Kathiyawadi Chai.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Engineering Projects & Competitive Exam Qualifications -->
+    <section class="glass-card p-6 sm:p-8 space-y-4">
+      <h2 class="text-xl sm:text-2xl font-bold text-white">Engineering &amp; Exam Milestones</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <article class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1.5">
+          <h3 class="font-semibold text-base text-sky-300">Automated Speed-Zone Control Vehicle (Mechanical Project)</h3>
+          <div class="text-xs text-slate-400">Distance Measurement &amp; Zone-Based Auto-Deceleration</div>
+          <p class="text-sm text-slate-300">
+            Engineered a prototype vehicle capable of measuring distance and automatically decelerating upon detecting school and hospital safety zones.
+          </p>
+        </article>
+        <article class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1.5">
+          <h3 class="font-semibold text-base text-sky-300">Competitive Defence &amp; Engineering Qualifications</h3>
+          <div class="text-xs text-slate-400">3 times AFCAT qualifier (airforce officer level exam) • SSC JE &amp; RVUNL JE Candidate</div>
+          <p class="text-sm text-slate-300">
+            3 times AFCAT qualifier (airforce officer level exam); actively preparing for RVUNL Junior Engineer (Mechanical) and SSC JE.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="glass-card p-6 sm:p-8 space-y-4">
+      <h2 class="text-xl sm:text-2xl font-bold text-white">Education</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <article class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
+          <h3 class="font-semibold text-base text-sky-300">B.Tech in Mechanical Engineering</h3>
+          <div class="text-xs sm:text-sm text-slate-300">Jaipur Engineering College, Kukas • Graduated 2023 • CGPA: 7.83</div>
+        </article>
+        <article class="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
+          <h3 class="font-semibold text-base text-sky-300">Senior Secondary (XII) &amp; Secondary (X)</h3>
+          <div class="text-xs sm:text-sm text-slate-300">Modern Raj Public Sr. Sec. School (RBSE) • Class XII: 73.8% (2018) • Class X: 83.33% (2016)</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section id="skills" class="glass-card p-6 sm:p-8 space-y-4">
+      <h2 class="text-xl sm:text-2xl font-bold text-white">Technical Skills</h2>
+      <div class="flex flex-wrap gap-2.5">
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">Well versed in building websites</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">Python</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">AutoCAD</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">AI Prompt Engineering &amp; AI Coding Workflows</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">LLM &amp; AI API Integration</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">AI-Assisted Web &amp; App Development</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">Git &amp; GitHub</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">Static Cloud Deployment (Vercel / GitHub Pages)</span>
+        <span class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium bg-indigo-500/15 text-indigo-200 border border-indigo-400/30">Mechanical Systems &amp; Fabrication</span>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs sm:text-sm text-slate-400 pt-2">
+      © 2026 Ajay Singh (@ajayhereonly) • Interactive Portfolio &amp; ATS CV
+    </footer>
+  </div>
+
+  <!-- Interactive Program Runner & Repository Viewer Modal -->
+  <div id="program-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden justify-center items-center z-50 p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-repo-title" onclick="if (event.target === this) closeModal()">
+    <div class="w-full max-w-4xl max-h-[90vh] bg-[#0d1323] border border-sky-400/35 rounded-2xl flex flex-col overflow-hidden shadow-2xl">
+      <div class="px-4 sm:px-6 py-4 bg-white/[0.04] border-b border-white/10 flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <div id="modal-repo-title" class="font-mono text-base sm:text-lg font-semibold text-sky-400">ajayhereonly/repo</div>
+          <div id="modal-repo-sub" class="text-xs text-slate-400">Interactive Program &amp; Source Inspector</div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="modal-github-link" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg text-xs font-semibold bg-white/10 text-slate-200 border border-white/15 hover:bg-white/15 transition">
+            Open on GitHub ↗
+          </a>
+          <button type="button" onclick="closeModal()" class="px-3 py-2 rounded-lg text-xs font-semibold bg-rose-500/20 text-rose-200 border border-rose-400/35 hover:bg-rose-500/30 transition cursor-pointer">
+            Close ✕
+          </button>
+        </div>
+      </div>
+
+      <div id="modal-tabs" class="flex flex-wrap gap-2 px-4 sm:px-6 py-3 bg-black/25 border-b border-white/10"></div>
+      <div id="modal-body" class="p-4 sm:p-6 overflow-y-auto flex-grow"></div>
+    </div>
+  </div>
+
+  <script>
+    const GITHUB_USER = 'ajayhereonly';
+
+    // Repositories excluded per request
+    const EXCLUDED_REPOS = new Set([
+      'snake',
+      'day20',
+      'mehuajay',
+      'python_work',
+      'pyhton_work',
+      'myname',
+      'snake_game'
+    ].map(name => name.toLowerCase()));
+
+    // Active repository catalog: pong_game, snake_game_normal, snakegame, Website
+    const REPO_CATALOG = [
+      {
+        name: 'pong_game',
+        category: 'game',
+        language: 'Python',
+        description: 'Classic two-paddle Pong arcade game built in Python with collision physics and score tracking.',
+        playableMode: 'pong',
+        files: ['main.py', 'paddle.py', 'ball.py', 'scoreboard.py']
+      },
+      {
+        name: 'snake_game_normal',
+        category: 'game',
+        language: 'Python',
+        description: 'Classic Snake arcade game featuring grid movement, food spawning, and dynamic score updates.',
+        playableMode: 'snake',
+        files: ['main.py', 'snake.py', 'food.py', 'scoreboard.py']
+      },
+      {
+        name: 'snakegame',
+        category: 'game',
+        language: 'Python',
+        description: 'Interactive Snake game iteration with smooth directional controls and collision handling.',
+        playableMode: 'snake',
+        files: ['main.py', 'snake.py']
+      },
+      {
+        name: 'Website',
+        category: 'web',
+        language: 'Web',
+        description: 'Personal portfolio and CV website deployed on Vercel & GitHub Pages.',
+        playableMode: 'web',
+        liveUrl: 'https://ajayhereonly.github.io/Website/',
+        files: ['index.html']
+      }
+    ];
+
+    let activeFilter = 'all';
+    let activeGameLoop = null;
+    let activeKeyHandler = null;
+
+    function setFeedback(msg) {
+      const el = document.getElementById('action-feedback');
+      if (el) el.textContent = msg;
+    }
+
+    function printResume() {
+      try {
+        window.print();
+      } catch (err) {
+        setFeedback('Use Ctrl+P (or Cmd+P) to print or save your ATS CV as PDF.');
+      }
+    }
+
+    function copyContactDetails() {
+      const text = 'Ajay Singh | +91 7891037123 | nandawat007@gmail.com | https://github.com/ajayhereonly | https://www.linkedin.com/in/ajay-singh-29a1752a0';
+      try {
+        const tempArea = document.createElement('textarea');
+        tempArea.value = text;
+        document.body.appendChild(tempArea);
+        tempArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempArea);
+        setFeedback('Contact details copied to clipboard.');
+      } catch (err) {
+        setFeedback(text);
+      }
+    }
+
+    function getActiveCatalog() {
+      return REPO_CATALOG.filter(repo => !EXCLUDED_REPOS.has(repo.name.toLowerCase()));
+    }
+
+    function updateFilterLabels() {
+      const visible = getActiveCatalog();
+      const games = visible.filter(r => r.category === 'game').length;
+      const web = visible.filter(r => r.category === 'web').length;
+      const buttons = document.querySelectorAll('.filter-btn');
+      if (buttons[0]) buttons[0].textContent = `All Repositories (${visible.length})`;
+      if (buttons[1]) buttons[1].textContent = `Games (${games})`;
+      if (buttons[2]) buttons[2].textContent = `Web & Portfolio (${web})`;
+    }
+
+    function renderProjects(list) {
+      updateFilterLabels();
+      const grid = document.getElementById('projects-grid');
+      grid.innerHTML = '';
+
+      list.forEach(repo => {
+        const card = document.createElement('div');
+        card.className = 'project-card p-5 flex flex-col justify-between cursor-pointer';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.onclick = () => openProjectRunner(repo);
+        card.onkeydown = e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openProjectRunner(repo);
+          }
+        };
+
+        const actionText = repo.playableMode === 'pong' || repo.playableMode === 'snake'
+          ? '▶ Play & Inspect Code'
+          : repo.playableMode === 'web'
+          ? '🌐 Preview Web App'
+          : '⚡ Inspect Files';
+
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start gap-2 mb-2">
+              <div class="font-mono text-base font-semibold text-white break-all">${repo.name}</div>
+              <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 shrink-0">
+                ${repo.language || 'Code'}
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-400 mb-4">${repo.description}</p>
+          </div>
+          <div class="flex justify-between items-center text-xs font-semibold text-sky-400 border-t border-white/10 pt-3">
+            <span>${actionText}</span>
+            <span>↗</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterProjects(category, btn) {
+      activeFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const visible = getActiveCatalog();
+      const filtered = category === 'all'
+        ? visible
+        : visible.filter(r => r.category === category);
+      renderProjects(filtered);
+    }
+
+    // Fetch public repo metadata from GitHub while respecting excluded repositories
+    async function syncWithGitHubAPI() {
+      try {
+        const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=50`);
+        if (!res.ok) return;
+        const liveRepos = await res.json();
+        if (!Array.isArray(liveRepos)) return;
+
+        const allowedLive = liveRepos.filter(live => !EXCLUDED_REPOS.has(live.name.toLowerCase()));
+
+        allowedLive.forEach(live => {
+          const existing = REPO_CATALOG.find(r => r.name.toLowerCase() === live.name.toLowerCase());
+          if (existing) {
+            if (live.description) existing.description = live.description;
+            if (live.homepage) existing.liveUrl = live.homepage;
+          }
+        });
+
+        const visible = getActiveCatalog();
+        document.getElementById('sync-status').textContent = `● GitHub Ready (${visible.length} Active Repos)`;
+        const current = activeFilter === 'all' ? visible : visible.filter(r => r.category === activeFilter);
+        renderProjects(current);
+      } catch (err) {
+        // Keep saved active catalog displayed cleanly
+      }
+    }
+
+    function openProjectRunner(repo) {
+      stopActiveGame();
+      const modal = document.getElementById('program-modal');
+      const titleEl = document.getElementById('modal-repo-title');
+      const ghLink = document.getElementById('modal-github-link');
+      const tabsEl = document.getElementById('modal-tabs');
+      const bodyEl = document.getElementById('modal-body');
+
+      titleEl.textContent = `${GITHUB_USER}/${repo.name}`;
+      ghLink.href = `https://github.com/${GITHUB_USER}/${repo.name}`;
+      tabsEl.innerHTML = '';
+      bodyEl.innerHTML = '<p class="text-sm text-slate-400">Loading program environment...</p>';
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      const tabs = [];
+      if (repo.playableMode === 'pong' || repo.playableMode === 'snake') {
+        tabs.push({ id: 'play', label: '▶ Run Interactive Game' });
+      }
+      if (repo.playableMode === 'web') {
+        tabs.push({ id: 'web', label: '🌐 Web App Preview' });
+      }
+      tabs.push({ id: 'code', label: '📄 Repository Files' });
+
+      tabs.forEach((tab, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tab-btn px-3.5 py-2 rounded-lg text-xs font-medium bg-white/5 text-slate-300 border border-transparent cursor-pointer transition' + (idx === 0 ? ' active' : '');
+        btn.textContent = tab.label;
+        btn.onclick = () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderTabContent(repo, tab.id);
+        };
+        tabsEl.appendChild(btn);
+      });
+
+      renderTabContent(repo, tabs[0].id);
+    }
+
+    async function renderTabContent(repo, tabId) {
+      stopActiveGame();
+      const bodyEl = document.getElementById('modal-body');
+
+      if (tabId === 'play') {
+        if (repo.playableMode === 'snake') {
+          startSnakeGame(bodyEl);
+        } else if (repo.playableMode === 'pong') {
+          startPongGame(bodyEl);
+        }
+        return;
+      }
+
+      if (tabId === 'web') {
+        const url = repo.liveUrl || `https://${GITHUB_USER}.github.io/${repo.name}/`;
+        bodyEl.innerHTML = `
+          <div class="mb-3 flex flex-wrap justify-between items-center gap-2">
+            <span class="text-xs text-slate-400 font-mono break-all">${url}</span>
+            <a href="${url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-400 text-slate-950">
+              Full Screen ↗
+            </a>
+          </div>
+          <iframe class="w-full h-96 rounded-xl border border-white/15 bg-white" src="${url}" title="${repo.name} Web Preview"></iframe>
+        `;
+        return;
+      }
+
+      bodyEl.innerHTML = '<p class="text-sm text-slate-400">Fetching repository files from GitHub...</p>';
+      try {
+        const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${repo.name}/contents`);
+        if (!res.ok) throw new Error('Repository unavailable');
+        const contents = await res.json();
+        const files = Array.isArray(contents) ? contents.filter(item => item.type === 'file') : [];
+
+        if (files.length === 0) {
+          bodyEl.innerHTML = '<p class="text-sm text-slate-400">No files found in this repository yet.</p>';
+          return;
+        }
+
+        const bar = document.createElement('div');
+        bar.className = 'flex flex-wrap gap-2 mb-3';
+
+        const viewer = document.createElement('pre');
+        viewer.className = 'code-viewer p-4 text-xs text-slate-200 max-h-96 overflow-auto';
+        viewer.textContent = 'Select a file to view its contents.';
+
+        files.forEach((file, idx) => {
+          const fBtn = document.createElement('button');
+          fBtn.type = 'button';
+          fBtn.className = 'filter-btn px-3 py-1.5 rounded-full text-xs font-mono bg-white/5 text-slate-300 border border-white/10 cursor-pointer' + (idx === 0 ? ' active' : '');
+          fBtn.textContent = file.name;
+          fBtn.onclick = () => {
+            bar.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            fBtn.classList.add('active');
+            loadRawFile(file.download_url, viewer);
+          };
+          bar.appendChild(fBtn);
+        });
+
+        bodyEl.innerHTML = '';
+        bodyEl.appendChild(bar);
+        bodyEl.appendChild(viewer);
+        loadRawFile(files[0].download_url, viewer);
+      } catch (err) {
+        bodyEl.innerHTML = `
+          <div class="p-4 rounded-xl bg-white/[0.04] border border-white/10 space-y-2">
+            <h3 class="font-semibold text-sm text-sky-300">Repository Files Info</h3>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Ensure <strong class="font-mono">${GITHUB_USER}/${repo.name}</strong> is set to <strong>Public</strong> on GitHub so live files can load directly here.
+            </p>
+            <p class="text-xs font-mono text-emerald-300">Tracked files: ${repo.files.join(', ')}</p>
+          </div>
+        `;
+      }
+    }
+
+    async function loadRawFile(rawUrl, targetPre) {
+      if (!targetPre || !rawUrl) return;
+      targetPre.textContent = 'Loading file...';
+      try {
+        const res = await fetch(rawUrl);
+        if (!res.ok) throw new Error('Failed to load file');
+        targetPre.textContent = await res.text();
+      } catch (err) {
+        targetPre.textContent = 'Unable to load raw file content.';
+      }
+    }
+
+    function stopActiveGame() {
+      if (activeGameLoop) {
+        clearInterval(activeGameLoop);
+        activeGameLoop = null;
+      }
+      if (activeKeyHandler) {
+        window.removeEventListener('keydown', activeKeyHandler);
+        activeKeyHandler = null;
+      }
+    }
+
+    function closeModal() {
+      stopActiveGame();
+      const modal = document.getElementById('program-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Interactive Snake Game (Keyboard & Touch Swipe)
+    function startSnakeGame(container) {
+      container.innerHTML = `
+        <div class="flex flex-col items-center gap-3">
+          <div class="text-xs sm:text-sm text-emerald-300 text-center">
+            Use <strong>Arrow Keys</strong> or <strong>Swipe</strong> • Score: <span id="snake-score" class="font-bold">0</span>
+          </div>
+          <canvas id="snake-canvas" class="game-canvas" width="360" height="360"></canvas>
+        </div>
+      `;
+      const canvas = document.getElementById('snake-canvas');
+      const ctx = canvas.getContext('2d');
+      const size = 360;
+      const box = 18;
+      let snake = [{ x: 9 * box, y: 9 * box }];
+      let food = { x: Math.floor(Math.random() * 18 + 1) * box, y: Math.floor(Math.random() * 18 + 1) * box };
+      let dir = 'RIGHT';
+      let score = 0;
+
+      activeKeyHandler = e => {
+        if (['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown'].includes(e.key)) {
+          e.preventDefault();
+        }
+        if (e.key === 'ArrowLeft' && dir !== 'RIGHT') dir = 'LEFT';
+        else if (e.key === 'ArrowUp' && dir !== 'DOWN') dir = 'UP';
+        else if (e.key === 'ArrowRight' && dir !== 'LEFT') dir = 'RIGHT';
+        else if (e.key === 'ArrowDown' && dir !== 'UP') dir = 'DOWN';
+      };
+      window.addEventListener('keydown', activeKeyHandler);
+
+      let startX = 0;
+      let startY = 0;
+      canvas.addEventListener('touchstart', e => {
+        if (e.touches.length > 0) {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      canvas.addEventListener('touchend', e => {
+        if (e.changedTouches.length > 0) {
+          const dx = e.changedTouches[0].clientX - startX;
+          const dy = e.changedTouches[0].clientY - startY;
+          if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 20 && dir !== 'LEFT') dir = 'RIGHT';
+            else if (dx < -20 && dir !== 'RIGHT') dir = 'LEFT';
+          } else {
+            if (dy > 20 && dir !== 'UP') dir = 'DOWN';
+            else if (dy < -20 && dir !== 'DOWN') dir = 'UP';
+          }
+        }
+      }, { passive: true });
+
+      activeGameLoop = setInterval(() => {
+        ctx.fillStyle = '#050811';
+        ctx.fillRect(0, 0, size, size);
+
+        for (let i = 0; i < snake.length; i++) {
+          ctx.fillStyle = i === 0 ? '#38bdf8' : '#34d399';
+          ctx.fillRect(snake[i].x, snake[i].y, box - 2, box - 2);
+        }
+
+        ctx.fillStyle = '#f43f5e';
+        ctx.fillRect(food.x, food.y, box - 2, box - 2);
+
+        let headX = snake[0].x;
+        let headY = snake[0].y;
+        if (dir === 'LEFT') headX -= box;
+        if (dir === 'UP') headY -= box;
+        if (dir === 'RIGHT') headX += box;
+        if (dir === 'DOWN') headY += box;
+
+        if (headX === food.x && headY === food.y) {
+          score++;
+          const scoreEl = document.getElementById('snake-score');
+          if (scoreEl) scoreEl.textContent = score;
+          food = { x: Math.floor(Math.random() * 18 + 1) * box, y: Math.floor(Math.random() * 18 + 1) * box };
+        } else {
+          snake.pop();
+        }
+
+        const newHead = { x: headX, y: headY };
+        if (headX < 0 || headY < 0 || headX >= size || headY >= size || snake.some(seg => seg.x === headX && seg.y === headY)) {
+          snake = [{ x: 9 * box, y: 9 * box }];
+          dir = 'RIGHT';
+          score = 0;
+          const scoreEl = document.getElementById('snake-score');
+          if (scoreEl) scoreEl.textContent = score;
+          return;
+        }
+        snake.unshift(newHead);
+      }, 125);
+    }
+
+    // Interactive Pong Game (Mouse, Touch, and Arrow Keys)
+    function startPongGame(container) {
+      container.innerHTML = `
+        <div class="flex flex-col items-center gap-3">
+          <div class="text-xs sm:text-sm text-sky-300 text-center">
+            Move Mouse, Touch, or <strong>↑ / ↓ Arrow Keys</strong> to move Left Paddle
+          </div>
+          <canvas id="pong-canvas" class="game-canvas" width="520" height="320"></canvas>
+        </div>
+      `;
+      const canvas = document.getElementById('pong-canvas');
+      const ctx = canvas.getContext('2d');
+      let playerY = 120;
+      let aiY = 120;
+      let pScore = 0;
+      let aiScore = 0;
+      let ball = { x: 260, y: 160, vx: 3.8, vy: 2.8 };
+
+      const setPaddleY = clientY => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleY = canvas.height / rect.height;
+        playerY = Math.max(0, Math.min(canvas.height - 76, (clientY - rect.top) * scaleY - 38));
+      };
+
+      canvas.addEventListener('mousemove', e => setPaddleY(e.clientY));
+      canvas.addEventListener('touchmove', e => {
+        if (e.touches.length > 0) setPaddleY(e.touches[0].clientY);
+      }, { passive: true });
+
+      activeKeyHandler = e => {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          playerY = e.key === 'ArrowUp'
+            ? Math.max(0, playerY - 22)
+            : Math.min(canvas.height - 76, playerY + 22);
+        }
+      };
+      window.addEventListener('keydown', activeKeyHandler);
+
+      activeGameLoop = setInterval(() => {
+        ctx.fillStyle = '#050811';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        if (ball.y <= 8 || ball.y >= canvas.height - 8) ball.vy *= -1;
+        if (aiY + 38 < ball.y) aiY += 3;
+        else aiY -= 3;
+
+        if (ball.x <= 24 && ball.y >= playerY && ball.y <= playerY + 76) {
+          ball.vx = Math.abs(ball.vx);
+        }
+        if (ball.x >= canvas.width - 24 && ball.y >= aiY && ball.y <= aiY + 76) {
+          ball.vx = -Math.abs(ball.vx);
+        }
+
+        if (ball.x < 0) {
+          aiScore++;
+          ball = { x: 260, y: 160, vx: 3.8, vy: 2.8 };
+        }
+        if (ball.x > canvas.width) {
+          pScore++;
+          ball = { x: 260, y: 160, vx: -3.8, vy: 2.8 };
+        }
+
+        ctx.fillStyle = '#38bdf8';
+        ctx.fillRect(12, playerY, 10, 76);
+
+        ctx.fillStyle = '#818cf8';
+        ctx.fillRect(canvas.width - 22, aiY, 10, 76);
+
+        ctx.fillStyle = '#34d399';
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '18px JetBrains Mono';
+        ctx.fillText(`${pScore}  :  ${aiScore}`, 225, 28);
+      }, 16);
+    }
+
+    // Initialize active repositories and GitHub sync
+    renderProjects(getActiveCatalog());
+    syncWithGitHubAPI();
+  </script>
+</body>
+</html>
